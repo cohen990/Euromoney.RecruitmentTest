@@ -12,10 +12,13 @@ namespace ContentConsole
 
             var analyzer = new TextAnalyzer(words);
 
+            var filter = new WordFilter(words);
+
             var badWords = analyzer.CountBadWords(content);
+            var maskedContent = filter.MaskWords(content);
 
             Console.WriteLine("Scanned the text:");
-            Console.WriteLine(content);
+            Console.WriteLine(maskedContent);
             Console.WriteLine("Total Number of negative words: " + badWords);
 
             Console.WriteLine("Press ANY key to exit.");
