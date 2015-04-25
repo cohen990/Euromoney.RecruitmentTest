@@ -9,7 +9,7 @@ One PR for each story
 * [Story 3](https://github.com/cohen990/Euromoney.RecruitmentTest/pull/3)
 * [Story 4](https://github.com/cohen990/Euromoney.RecruitmentTest/pull/4)
 
-:exclamation: The commits have not been squashed down. This is so that you as an assessor have a little bit more information about my work flow if you want it.:exclamation:
+:exclamation: The commits have *not* been squashed down. This is so that you as an assessor have a little bit more information about my work flow if you want it.:exclamation:
 
 ## Intro
 
