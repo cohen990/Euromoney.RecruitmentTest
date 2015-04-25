@@ -10,7 +10,9 @@
         {
             var input = string.Empty;
 
-            var result = TextAnalyzer.CountBadWords(input);
+            var analyzer = new TextAnalyzer("bad");
+
+            var result = analyzer.CountBadWords(input);
 
             Assert.AreEqual(0, result);
         }
@@ -20,7 +22,9 @@
         {
             const string input = "bad";
 
-            var result = TextAnalyzer.CountBadWords(input);
+            var analyzer = new TextAnalyzer("bad");
+
+            var result = analyzer.CountBadWords(input);
 
             Assert.AreEqual(1, result);
         }
@@ -30,7 +34,9 @@
         {
             const string input = "hello";
 
-            var result = TextAnalyzer.CountBadWords(input);
+            var analyzer = new TextAnalyzer("bad");
+
+            var result = analyzer.CountBadWords(input);
 
             Assert.AreEqual(0, result);
         }
@@ -40,7 +46,9 @@
         {
             const string input = "bad bad bad good good good";
 
-            var result = TextAnalyzer.CountBadWords(input);
+            var analyzer = new TextAnalyzer("bad");
+
+            var result = analyzer.CountBadWords(input);
 
             Assert.AreEqual(3, result);
         }
@@ -50,7 +58,8 @@
         {
             const string input = "bad horrible bad nasty nasty swine";
 
-            var result = TextAnalyzer.CountBadWords(input);
+            var analyzer = new TextAnalyzer("bad", "nasty", "horrible", "swine");
+            var result = analyzer.CountBadWords(input);
 
             Assert.AreEqual(6, result);
         }
