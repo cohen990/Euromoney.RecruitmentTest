@@ -1,3 +1,16 @@
+# Dan Cohen's solution
+
+My solution to each story can be found in PR's
+
+One PR for each story
+
+* [Story 1](https://github.com/cohen990/Euromoney.RecruitmentTest/pull/1)
+* [Story 2](https://github.com/cohen990/Euromoney.RecruitmentTest/pull/2)
+* [Story 3](https://github.com/cohen990/Euromoney.RecruitmentTest/pull/3)
+* [Story 4](https://github.com/cohen990/Euromoney.RecruitmentTest/pull/4)
+
+:exclamation: The commits have not been squashed down. This is so that you as an assessor have a little bit more information about my work flow if you want it.:exclamation:
+
 ## Intro
 
 One of the things we do at Euromoney is publish and manage content.
