@@ -8,7 +8,9 @@ namespace ContentConsole
         {
             const string content = "The weather in Manchester in winter is bad. It rains all the time - it must be horrible for people visiting.";
 
-            var analyzer = new TextAnalyzer("swine", "bad", "nasty", "horrible");
+            var words = new BadWordStore().GetAllBadWords();
+
+            var analyzer = new TextAnalyzer(words);
 
             var badWords = analyzer.CountBadWords(content);
 
