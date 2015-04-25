@@ -1,33 +1,27 @@
 ﻿namespace ContentConsole
 {
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Text.RegularExpressions;
 
-    public static class TextAnalyzer
+    public class TextAnalyzer
     {
-        private const string BannedWord1 = "swine";
-        private const string BannedWord2 = "bad";
-        private const string BannedWord3 = "nasty";
-        private const string BannedWord4 = "horrible";
+        private readonly string[] _badWords;
+        public TextAnalyzer(params string[] badWords)
+        {
+            _badWords = badWords;
+        }
 
-        public static int CountBadWords(string text)
+        public int CountBadWords(string text)
         {
             int badWords = 0;
 
-            MatchCollection matches = Regex.Matches(text, BannedWord1);
+            foreach (var badWord in _badWords)
+            {
+                MatchCollection matches = Regex.Matches(text, badWord);
 
-            badWords += matches.Count;
-
-            matches = Regex.Matches(text, BannedWord2);
-
-            badWords += matches.Count;
-
-            matches = Regex.Matches(text, BannedWord3);
-
-            badWords += matches.Count;
-
-            matches = Regex.Matches(text, BannedWord4);
-
-            badWords += matches.Count;
+                badWords += matches.Count;
+            }
 
             return badWords;
         }

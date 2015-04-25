@@ -6,10 +6,11 @@ namespace ContentConsole
     {
         public static void Main(string[] args)
         {
-
             const string content = "The weather in Manchester in winter is bad. It rains all the time - it must be horrible for people visiting.";
 
-            var badWords = TextAnalyzer.CountBadWords(content);
+            var analyzer = new TextAnalyzer("swine", "bad", "nasty", "horrible");
+
+            var badWords = analyzer.CountBadWords(content);
 
             Console.WriteLine("Scanned the text:");
             Console.WriteLine(content);
