@@ -1,7 +1,6 @@
 ﻿namespace ContentConsole.Test.Unit
 {
     using System.Linq;
-    using System.Text.RegularExpressions;
     using NUnit.Framework;
 
     [TestFixture]
@@ -94,34 +93,6 @@
             var result = filter.MaskWords(input);
 
             Assert.AreEqual(expected, result);
-        }
-    }
-
-    internal class WordFilter
-    {
-        private readonly string[] _wordsToFilter;
-
-        public WordFilter(params string[] wordsToFilter)
-        {
-            _wordsToFilter = wordsToFilter;
-        }
-
-        public string MaskWords(string input)
-        {
-            if (string.IsNullOrWhiteSpace(input))
-                return string.Empty;
-
-            foreach (var word in _wordsToFilter)
-            {
-                var regex = @"(\A|\W)" + word + @"(\z|\W)";
-
-                if (Regex.IsMatch(input, regex))
-                {
-                    input = input.Replace(word, word.Mask());
-                }
-            }
-
-            return input;
         }
     }
 }
