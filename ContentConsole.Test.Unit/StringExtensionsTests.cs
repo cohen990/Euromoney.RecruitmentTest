@@ -44,7 +44,7 @@
 
                 var result = input.Mask();
 
-                Assert.AreEqual("a*d", result);
+                Assert.AreEqual("a#d", result);
             }
 
             [Test]
@@ -54,7 +54,7 @@
 
                 var result = input.Mask();
 
-                Assert.AreEqual("a**y", result);
+                Assert.AreEqual("a##y", result);
             }
 
             [Test]
@@ -64,7 +64,7 @@
 
                 var result = input.Mask();
 
-                Assert.AreEqual("A*****a", result);
+                Assert.AreEqual("A#####a", result);
             }
         }
     }

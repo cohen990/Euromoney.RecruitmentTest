@@ -1,6 +1,7 @@
 ﻿namespace ContentConsole.Test.Unit
 {
     using System.Linq;
+    using System.Text.RegularExpressions;
     using NUnit.Framework;
 
     [TestFixture]
@@ -15,7 +16,7 @@
 
             var result = filter.MaskWords(input);
 
-            Assert.AreSame(string.Empty, result);
+            Assert.AreEqual(string.Empty, result);
         }
 
         [Test]
@@ -27,20 +28,72 @@
 
             var result = filter.MaskWords(input);
 
-            Assert.AreSame(input, result);
+            Assert.AreEqual(input, result);
         }
 
         [Test]
         public void GivenFilterableWord_ReturnsMaskedWord()
         {
             const string input = "camel";
-            const string expected = "c***l";
+            const string expected = "c###l";
 
             var filter = new WordFilter("camel");
 
             var result = filter.MaskWords(input);
 
-            Assert.AreSame(expected, result);
+            Assert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public void GivenOneFilterableWord_ReturnsOneMaskedWord()
+        {
+            const string input = "camel hair";
+            const string expected = "c###l hair";
+
+            var filter = new WordFilter("camel");
+
+            var result = filter.MaskWords(input);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public void GivenTwoDifferentFilterableWord_ReturnsTwoAppropriatelyMaskedWord()
+        {
+            const string input = "camel hair";
+            const string expected = "c###l h##r";
+
+            var filter = new WordFilter("camel", "hair");
+
+            var result = filter.MaskWords(input);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public void GivenWordContainingFilterableWord_ReturnsUnmaskedWord()
+        {
+            const string input = "arrest";
+            const string expected = "arrest";
+
+            var filter = new WordFilter("rest");
+
+            var result = filter.MaskWords(input);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public void GivenContentWithDoubleSpaces_MasksWords()
+        {
+            const string input = "arrest  that  man";
+            const string expected = "a####t  t##t  m#n";
+
+            var filter = new WordFilter("arrest", "that", "man");
+
+            var result = filter.MaskWords(input);
+
+            Assert.AreEqual(expected, result);
         }
     }
 
@@ -55,6 +108,19 @@
 
         public string MaskWords(string input)
         {
+            if (string.IsNullOrWhiteSpace(input))
+                return string.Empty;
+
+            foreach (var word in _wordsToFilter)
+            {
+                var regex = @"(\A|\W)" + word + @"(\z|\W)";
+
+                if (Regex.IsMatch(input, regex))
+                {
+                    input = input.Replace(word, word.Mask());
+                }
+            }
+
             return input;
         }
     }

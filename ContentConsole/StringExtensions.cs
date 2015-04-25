@@ -15,7 +15,7 @@ namespace ContentConsole
 
             for (int i = 1; i < input.Length - 1; i++)
             {
-                builder.Append("*");
+                builder.Append("#");
             }
 
             builder.Append(input[input.Length - 1]);
